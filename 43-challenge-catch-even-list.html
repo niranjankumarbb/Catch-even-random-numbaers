@@ -1,0 +1,74 @@
+
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+
+        <div id = 'root'>
+
+        </div>
+        <script src = "C:\Users\Niranjan\jan-2020-mern\reactjs\js\react.development.js"></script>
+
+        <script src = "C:\Users\Niranjan\jan-2020-mern\reactjs\js\react-dom.development.js"></script>
+
+        <script src = "C:\Users\Niranjan\jan-2020-mern\reactjs\js\babel.js"></script>
+
+        <script src = "C:\Users\Niranjan\jan-2020-mern\reactjs\js\axios.js"></script>
+
+        <script type ="text/babel"> 
+        
+            const rootHandle = document.getElementById('root')
+            class EvenList extends React.Component{
+                 constructor(){
+                     super()
+                     this.state = {
+                         number : undefined,
+                    evenArray   : []
+                     }
+                 }
+                
+                 componentDidMount(){                     
+                    setInterval(()=>{                       
+                     var number = (Math.round(Math.random() * 100 ))
+                     this.setState({number}) 
+                     var evenNumber = 0
+                     if(number % 2 == 0){
+                        evenNumber = number                 
+                      this.setState((prevState)=>{
+                       return { 
+                         evenArray : prevState.evenArray.concat(evenNumber)
+                        }
+                      })
+                     }
+                   } , 1000)
+                 }   
+
+                   render(){
+                     console.log(this.state)
+                     return (
+                          <div>
+                            <h2> Random numbers</h2>
+                             <h2> { this.state.number}</h2>
+                             <h1>No of even numbers - {this.state.evenArray.length}</h1>
+                             <ul>
+                             {
+                                 this.state.evenArray.map((ele,i) =>
+                                        <li key ={i}> {ele} </li>)
+                             }                                          
+                            </ul> 
+                         </div>
+                    )
+                 }
+             } 
+        
+            ReactDOM.render(<EvenList/>,rootHandle) 
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
